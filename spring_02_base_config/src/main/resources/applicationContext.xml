@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    1. 通过属性 name 可以为 bean 设置别名, 可以使用逗号 分号 或者空格进行分隔-->
+<!--    2. 通过scope属性可以控制bean的生成模式 默认bean是单例模式
+                可以设置为singleton
+                也可以设置prototype
+                -->
+    <bean id="bookDao" name="testDao testDao2" class="com.yugao.dao.impl.BookDaoImpl"/>
+    <bean id="bookService" name="testService testService2" class="com.yugao.service.impl.BookServiceImpl">
+        <property name="bookDao" ref="testDao"/>
+    </bean>
+</beans>

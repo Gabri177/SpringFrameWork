@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+                    http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context.xsd
+">
+
+<!--1. 管理druid的 druidDataSource对象-->
+<!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+<!--        <property name="url" value="jdbc:mysql://127.0.0.1:3306/gyh01"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="123456"/>-->
+<!--    </bean>-->
+
+<!--2. 管理c3p0的 DataSource对象-->
+<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--        <property name="driverClass" value="com.mysql.jdbc.Driver" />-->
+<!--        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/gyh01" />-->
+<!--        <property name="user" value="root"/>-->
+<!--        <property name="password" value="123456"/>-->
+<!--    </bean>-->
+
+<!--3. 通过开启spring规定的context命名空间 通过命名空间来读取properties中的内容进行加载-->
+<!--    system-properties-mode 用来设置是否加载系统默认的属性 关闭避免重名问题-->
+    <context:property-placeholder location="classpath*:*.properties" system-properties-mode="NEVER" />
+<!--    使用属性占位符${}读取properties文件中的属性-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl">
+        <property name="name" value="${username}"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    1. 导入sping坐标 spring-context 导入后idea右键创建会出现spring配置的选项-->
+<!--    2. 配置bean bean标签的id属性是bean的名字 class属性表示给bean定义类型-->
+    <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl" />
+<!--    3. 配置完dao的bean以后 也需要配置service的bean 然后配置对应关系-->
+    <bean id="bookService" class="com.yugao.service.impl.BookServiceImpl">
+<!--    4. 注意下面的保管关系的配置的name属性 是在该service类中dao的实现名字
+           而ref是该配置文件中对应的bean名称-->
+        <property name="bookDao" ref="bookDao" />
+    </bean>
+
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--    1. 注入简单的类型-->
+       <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl">
+           <property name="connectionTimeout" value="1000" />
+           <property name="databaseName" value="jajjaa" />
+       </bean>
+
+        <bean id="userDao" class="com.yugao.dao.impl.UserDaoImpl"/>
+<!--    2. 注入引用类型
+            name 是类中对应的属性名 实际上是set方法对应的名称
+            ref  是注入类型的bean的id或者name
+            -->
+        <bean id="bookService" class="com.yugao.service.impl.BookServiceImpl">
+            <property name="bookDao" ref="bookDao" />
+            <property name="userDao" ref="userDao" />
+        </bean>
+</beans>

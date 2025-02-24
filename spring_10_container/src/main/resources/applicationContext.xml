@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    默认的lazy-init就是false  因为spring在启动的时候会自动加载所有bean  而当为false的时候 只有第一次使用的时候才会加载-->
+    <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl" lazy-init="true"/>
+
+</beans>

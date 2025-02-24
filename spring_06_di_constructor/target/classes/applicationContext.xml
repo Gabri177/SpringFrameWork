@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--    1. 下面这个是标准写法 用于构造器注入-->
+<!--    <bean id="userDao" class="com.yugao.dao.impl.UserDaoImpl"/>-->
+<!--    <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl">-->
+<!--       <constructor-arg name="databaseName" value="jajaja"/>-->
+<!--       <constructor-arg name="connectionTimeout" value="100" />-->
+<!--    </bean>-->
+<!--    -->
+<!--    <bean id="bookService" class="com.yugao.service.impl.BookServiceImpl">-->
+<!--       <constructor-arg name="bookDao" ref="bookDao" />-->
+<!--       <constructor-arg name="userDao" ref="userDao" />-->
+<!--    </bean>-->
+
+<!--    2. 解决形参名称问题 可以根据参数的类型进行注入-->
+<!--    <bean id="userDao" class="com.yugao.dao.impl.UserDaoImpl"/>-->
+<!--    <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl">-->
+<!--        <constructor-arg type="java.lang.String" value="jajaja"/>-->
+<!--        <constructor-arg type="int" value="100" />-->
+<!--    </bean>-->
+
+<!--    <bean id="bookService" class="com.yugao.service.impl.BookServiceImpl">-->
+<!--        <constructor-arg name="bookDao" ref="bookDao" />-->
+<!--        <constructor-arg name="userDao" ref="userDao" />-->
+<!--    </bean>-->
+
+<!--    3. 我们也可以按照构造方法的顺序进行注入-->
+    <bean id="userDao" class="com.yugao.dao.impl.UserDaoImpl"/>
+    <bean id="bookDao" class="com.yugao.dao.impl.BookDaoImpl">
+        <constructor-arg index="0" value="jajaja"/>
+        <constructor-arg index="1" value="100" />
+    </bean>
+
+    <bean id="bookService" class="com.yugao.service.impl.BookServiceImpl">
+        <constructor-arg name="bookDao" ref="bookDao" />
+        <constructor-arg name="userDao" ref="userDao" />
+    </bean>
+</beans>
